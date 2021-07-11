@@ -10,9 +10,17 @@ def hello_world(request):
     return HttpResponse(f"Current Server time is : {str(now)}")
 
 
-def hi(request):
+def sort_integers(request):
     numbers = [int(i) for i in request.GET['numbers'].split(',')]
     # pdb.set_trace()
     # numbers = set(numbers)
     return JsonResponse({"numbers": numbers,
                          "sorted_numbers": sorted(numbers)})
+
+
+def say_hi(request, name, age):
+    if age <= 17:
+        message = f'Sorry {name} this is a page not for childs and teenagers :v'
+    else:
+        message = f'Welcome to my page {name}'
+    return HttpResponse(message)
